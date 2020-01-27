@@ -455,11 +455,29 @@ hr {
   width: 1200px;
   padding: 50px 0 0 0; }
 
-.author {
+.author, #navbot {
   text-align: center;
   width: 25%;
   float: left;
   margin: 20px 5% 0px 5%; }
+#navbot {
+  margin-top: 0px;
+}
+
+#navtop {
+  width: 100%;
+  text-align: center;
+  margin: 0px 0px 10px 0px;
+}
+
+#navbot {
+  display: block; }
+#navtop {
+  display: none; }
+
+#navtop .link {
+  display: inline-block;
+}
 
 .content {
   width: 60%;
@@ -647,14 +665,18 @@ hr {
   font-weight: 300;
   color: #979797; }
 
-.author {
+.author, .nav {
   font-family: "Roboto", sans-serif;
   font-weight: 300; }
 
-.author p {
+.author p, .nav p {
   margin: 0;
   padding: 0;
   font-size: 12px; }
+
+#navtop p {
+  margin: 10px;
+  font-size: 16px; }
 
 .author p.name {
   font-size: 14px;
@@ -663,7 +685,7 @@ hr {
 .author p.address {
   color: #979797; }
 
-.author p.link {
+.author p.link, .nav p.link {
   margin-bottom: 10px; }
 
 .author ul.social {
@@ -735,6 +757,13 @@ body.post-template .site-header h2 .logo {
 
   .author {
     margin-bottom: 60px; }
+
+  #navbot {
+      display: none;
+  }
+  #navtop {
+      display: block;
+  }
 
   .site-header,
   body.post-template > .site-header {

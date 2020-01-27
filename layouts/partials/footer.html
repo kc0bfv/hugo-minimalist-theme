@@ -1,3 +1,7 @@
+</main>
+{{ partial "author" . }}
+{{ partial "navbot" . }}
+</div>
 <footer class="main-footer">
   <div class="container clearfix">
         <a class="icon-rss" href="{{ "index.xml" | absURL }}" title="RSS"></a>
@@ -11,21 +15,6 @@
 <script>window.jQuery || document.write('<script src="{{ "js/vendor/jquery-1.11.0.min.js" | absURL }}"><\/script>')</script>
 <script src="{{ "js/plugins.js" | absURL }}"></script>
 
-<script>
-    {{ with .Site.Params.header_background }}
-    function randomHeaderImg() {
-        images = [
-            {{- $last_elem := sub (len .) 1 -}}
-            {{ range $index, $component := . -}}
-                {{ . | absURL }}{{ if lt $index $last_elem }},{{ end }}
-            {{- end -}}
-        ];
-        i = Math.ceil(Math.random() * images.length) - 1;
-        document.getElementsByClassName("site-header")[0].style.backgroundImage = "url(" + images[i] + ")";
-    }
-    window.onload = randomHeaderImg;
-    {{ end }}
-</script>
 
 {{ range .Site.Params.custom_js }}
 <link rel="stylesheet" href="{{ . | absURL }}">

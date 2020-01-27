@@ -21,23 +21,51 @@
         {{ range .Site.Params.custom_css }}
         <link rel="stylesheet" href="{{ . | absURL }}">
         {{ end }}
-        <style>
-        .site-header h2 .logo {
-        background: url({{ .Site.Params.header_background | absURL }}) no-repeat 0 0;
-        }
-        @media (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
-          .site-header h2 .logo {
-            background-image: url({{ .Site.Params.header_background | absURL }});
-        }}
-       .site-header {
-         background-image: url({{ .Site.Params.header_background | absURL }});
-         z-index: -1;
-        }
-        </style>
+
+        <script>
+            {{ with .Site.Params.header_background }}
+            function randomHeaderImg() {
+                let images = [
+                    {{- $last_elem := sub (len .) 1 -}}
+                    {{ range $index, $component := . -}}
+                        {{ . | absURL }}{{ if lt $index $last_elem }},{{ end }}
+                    {{- end -}}
+                ];
+                let img_ind = Math.ceil(Math.random() * images.length) - 1;
+                let sel_url = images[img_ind];
+                let img = new Image();
+                img.onload = function() {
+                    function set_img() {
+                        let element = document.getElementsByClassName("site-header")[0];
+                        element.style.backgroundImage = "url(" + sel_url + ")";
+                    }
+                    if( document.readyState === "complete" ) { set_img() }
+                    else { window.onload = set_img }
+                }
+                img.src = sel_url;
+            }
+            randomHeaderImg();
+            {{ end }}
+        </script>
+        {{ with .Site.Params.header_background }}
+        <noscript>
+            <style>
+                .site-header {
+                    background-image: url({{ index . 0 | safeURL | absURL }});
+                }
+            </style>
+        </noscript>
+        {{ end }}
     </head>
     <body>
         <header class="site-header">
           <div>
-              <h2>{{ .Site.Params.header_title }}</h2>
+          {{ with .Site.Params.header_title }}
+              <h2>{{ . }}</h2>
+          {{ end }}
           </div>
         </header>
+        <div class="container clearfix">
+            {{ partial "navtop" . }}
+
+            <main class="content">
