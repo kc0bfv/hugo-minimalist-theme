@@ -446,6 +446,10 @@ hr {
   border-top: 1px #E4E4E4 solid;
   margin: 40px 0; }
 
+figure {
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
 .post ul li {
   line-height: 28px;
   font-size: 15px; }
