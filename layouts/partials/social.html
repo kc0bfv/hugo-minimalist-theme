@@ -26,4 +26,8 @@
 <li><a href="//github.com/{{.}}" class="icon-github" target="_blank" title="Github" aria-label="Github"></a></li>
 {{ end }}
 
+{{ with $.Site.Author.email }}
+<li><a href="mailto:{{.}}" class="icon-mail" title="Email" aria-label="Email"></a></li>
+{{ end }}
+
 <li><a href="{{ .Site.BaseURL }}index.xml" class="icon-rss" target="_blank" title="RSS" aria-label="RSS"></a></li>
